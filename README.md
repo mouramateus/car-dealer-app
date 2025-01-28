@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Car Dealer App
 
-## Getting Started
+## Overview
+The **Car Dealer App** is a Next.js application that allows users to filter vehicles by make and model year. Users can select a vehicle make and year on the home page, and then view a dynamically generated list of vehicle models on the results page. The app is styled with Tailwind CSS and uses React Suspense for smooth loading experiences.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+- **Dynamic Filtering**: Filter vehicles by make and model year.
+- **Responsive Design**: Fully responsive UI using Tailwind CSS.
+- **API Integration**: Fetches data from the [VPIC API](https://vpic.nhtsa.dot.gov/api/?ref=public_apis).
+- **Dynamic Routing**: Uses Next.js App Router for dynamic route handling.
+- **Error Handling**: Displays appropriate error messages for data fetching issues.
+
+---
+
+## Installation and Setup
+
+### Prerequisites
+- Node.js (v16 or later recommended)
+- npm or yarn
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd car-dealer-app
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open the app in your browser at:
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file in the root of the project to store environment variables. Example:
+```env
+NEXT_PUBLIC_VPIC_API=https://vpic.nhtsa.dot.gov/api
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+/car-dealer-app
+|├── src
+|   ├── app
+|   |   ├── result
+|   |   |   ├── [makeId]
+|   |   |   |   ├── [year]
+|   |   |   |   |   └── page.js  # Result page
+|   |   └── page.js               # Home page
+|   ├── styles                   # Tailwind CSS styles
+|   └── utils                    # Helper functions
+|├── public                      # Static assets
+|└── .env.local                  # Environment variables
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## APIs Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Vehicle Makes API
+- **Endpoint**: `https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json`
+- **Description**: Fetches a list of vehicle makes for the type "car."
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vehicle Models API
+- **Endpoint**: `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/{makeId}/modelyear/{year}?format=json`
+- **Description**: Fetches vehicle models based on make ID and year.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Running the Build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To create a production-ready build:
+```bash
+npm run build
+# or
+yarn build
+```
+
+To preview the production build:
+```bash
+npm run start
+# or
+yarn start
+```
+
+---
+
+## Screenshots
+
+### Home Page
+The user can select a vehicle make and model year from dropdown menus.
+
+### Results Page
+Displays a list of vehicle models dynamically based on the selected filters.
+
+---
+
+## Known Issues
+- Ensure API endpoints are reachable.
+- Handle edge cases for empty API responses or invalid inputs.
+
+---
+
+## Contributing
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
