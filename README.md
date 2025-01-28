@@ -23,7 +23,7 @@ The **Car Dealer App** is a Next.js application that allows users to filter vehi
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/mouramateus/car-dealer-app.git>
    ```
 
 2. Navigate to the project directory:
